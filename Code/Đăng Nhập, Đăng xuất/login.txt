@@ -1,0 +1,157 @@
+<%
+
+                        HttpSession httpSession = request.getSession();
+                        String name = LoginServlet.getLoginName(request, response);
+                        if (name != null) {
+                            int inLogin = (Integer) session.getAttribute("inLogin");
+                            inLogin++;
+                            session.setAttribute("inLogin", inLogin);
+                            if (inLogin >= 3) {
+                                response.sendRedirect("404.jsp");
+                            }
+                        } else {
+                    %>
+
+
+ <h3>Existing User</h3>
+                <%
+                    if (httpSession.getAttribute("loginExistence") != null) {
+                        out.println("<div class='alert alert-danger' role='alert' style='width: 485px;'>");
+                        out.println("<strong>Oh snap!</strong> Username does not exist. Please sign up at <a href='register.jsp'>HERE</a>.");
+                        out.println("</div>");
+                        httpSession.removeAttribute("loginExistence");
+                %>
+                <div class="account-bottom">
+                    <form action="/LoginServlet" autocomplete="on" method="post">
+                        <input class="form-control" id="username" name="username" placeholder="Username" type="text" required="required"
+                               autofocus="">
+                        <input class="form-control" id="password" name="password" placeholder="Password" type="password" required="required">
+
+                        <div class="address">
+                            <a class="forgot" href="#">Forgot Your Password?</a>
+                            <input class="btn btn-success" type="submit" value="Login">
+                        </div>
+                    </form>
+                </div>
+                <%
+
+                } else if (httpSession.getAttribute("loginBlocked") != null) {
+                    out.println("<div class='alert alert-danger' role='alert' style='width: 485px;'>");
+                    out.println("<strong>Oh snap!</strong> Your username was blocked by administration.");
+                    out.println("</div>");
+                    httpSession.removeAttribute("loginBlocked");
+                %>
+                <div class="account-bottom">
+                    <form action="/LoginServlet" autocomplete="on" method="post">
+                        <input class="form-control" id="username" name="username" placeholder="Username" type="text" required="required"
+                               autofocus="">
+                        <input class="form-control" id="password" name="password" placeholder="Password" type="password" required="required">
+
+                        <div class="address">
+                            <a class="forgot" href="#">Forgot Your Password?</a>
+                            <input class="btn btn-success" type="submit" value="Login">
+                        </div>
+                    </form>
+                </div>
+                <%
+
+                } else if (httpSession.getAttribute("loginUnactive") != null) {
+                    out.println("<div class='alert alert-danger' role='alert' style='width: 485px;'>");
+                    out.println("<strong>Oh snap!</strong> Your mail which liked your username does not active. Click <a href='http://www.gmail.com'>here</a> active now.");
+                    out.println("</div>");
+                    httpSession.removeAttribute("loginUnactive");
+                %>
+                <div class="account-bottom">
+                    <form action="/LoginServlet" autocomplete="on" method="post">
+                        <input class="form-control" id="username" name="username" placeholder="Username" type="text" required="required"
+                               autofocus="">
+                        <input class="form-control" id="password" name="password" placeholder="Password" type="password" required="required">
+
+                        <div class="address">
+                            <a class="forgot" href="#">Forgot Your Password?</a>
+                            <input class="btn btn-success" type="submit" value="Login">
+                        </div>
+                    </form>
+                </div>
+                <%
+                } else if (httpSession.getAttribute("loginActive") != null) {
+                    out.println("<script src='../js/jquery.timecountdown.js'></script>");
+                    out.println("<div class='alert alert-success' role='alert' style='width: 485px;'>");
+                    out.println("<strong>Well done!</strong> Login successfully. It will be redirected to homepage after <span id='time'>" +
+                            "03</span> second(s)");
+                    out.println("</div>");
+                    httpSession.removeAttribute("loginActive");
+                } else if (httpSession.getAttribute("loginCount") != null) {
+                    int loginCount = (Integer) httpSession.getAttribute("loginCount");
+                    if (loginCount > 2) {
+                        if (httpSession.getAttribute("lasAccessedTime") == null) {
+                            long lasAccessedTime = session.getLastAccessedTime();
+                            httpSession.setAttribute("lasAccessedTime", lasAccessedTime);
+                        }
+                        out.println("<script src='../js/jquery.timeblock.js'></script>");
+                        long last = (Long) httpSession.getAttribute("lasAccessedTime");
+                        Date date = new Date();
+                        long currTime = date.getTime();
+                        long remainTime = currTime - last;
+                        long totaltimeremain = 300000 - remainTime;
+                        Date totaltimeremaindate = new Date(totaltimeremain);
+
+                        out.println("<span id='timeremain' hidden='hidden'>" + totaltimeremain / 1000 + "</span>");
+                        out.println("<div class='alert alert-danger' role='alert' style='width: 485px;'>");
+                        out.println("<strong>Oh snap!</strong>BLOCKED Login. Try again after <span id='time'>" + new SimpleDateFormat("mm:ss").format(totaltimeremaindate) + "</span> minute(s).");
+                        out.println("</div>");
+                %>
+                <div class="account-bottom">
+                    <form action="/LoginServlet" autocomplete="on" method="post">
+                        <input class="form-control" id="username" name="username" placeholder="Username" type="text" required="required"
+                               autofocus="">
+                        <input class="form-control" id="password" name="password" placeholder="Password" type="password" required="required">
+
+                        <div class="address">
+                            <a class="forgot" href="#">Forgot Your Password?</a>
+                            <input class="btn btn-success" type="submit" value="Login">
+                        </div>
+                    </form>
+                </div>
+                <%
+                    if (remainTime >= 300000) {
+                        httpSession.removeAttribute("loginCount");
+                        httpSession.removeAttribute("lasAccessedTime");
+                        response.sendRedirect("login.jsp");
+                    }
+                } else {
+                    out.println("<div class='alert alert-warning' role='alert' style='width: 485px;'>");
+                    out.println("<strong>Warning!</strong> Wrong password, try again!! " + loginCount + " time(s).");
+                    out.println("</div>");
+                %>
+                <div class="account-bottom">
+                    <form action="/LoginServlet" autocomplete="on" method="post">
+                        <input class="form-control" id="username" name="username" placeholder="Username" type="text" required="required"
+                               autofocus="">
+                        <input class="form-control" id="password" name="password" placeholder="Password" type="password" required="required">
+
+                        <div class="address">
+                            <a class="forgot" href="#">Forgot Your Password?</a>
+                            <input class="btn btn-success" type="submit" value="Login">
+                        </div>
+                    </form>
+                </div>
+                <%
+                    }
+                } else {
+                %>
+                <div class="account-bottom">
+                    <form action="/LoginServlet" autocomplete="on" method="post">
+                        <input class="form-control" id="username" name="username" placeholder="Username" type="text" required="required"
+                               autofocus="">
+                        <input class="form-control" id="password" name="password" placeholder="Password" type="password" required="required">
+
+                        <div class="address">
+                            <a class="forgot" href="#">Forgot Your Password?</a>
+                            <input class="btn btn-success" type="submit" value="Login">
+                        </div>
+                    </form>
+                </div>
+                <%
+                    }
+                %>
