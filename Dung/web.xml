@@ -30,13 +30,4 @@
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/LogoutServlet</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>ShoppingServlet</servlet-name>
-        <servlet-class>Cart.com.ShoppingServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ShoppingServlet</servlet-name>
-        <url-pattern>/ShoppingServlet</url-pattern>
-    </servlet-mapping>
 </web-app>
