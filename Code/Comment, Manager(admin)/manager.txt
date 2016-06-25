@@ -1,0 +1,45 @@
+<%
+        ProductDao productDao = new ProductDao();
+        AccountDao accountDao = new AccountDao();
+
+        List<Category> categoryList = new ArrayList<>();
+        List<Product> products = new ArrayList<>();
+        List<Account> accounts = new ArrayList<>();
+
+        categoryList = categoryDao.getAll();
+        products = productDao.getAll();
+        accounts = accountDao.getAll();
+        if (name.equals("admin")) {
+    %>
+    <div class="container">
+        <div class="prdt-top">
+            <div class="col-md-9 prdt-left">
+                <div class="product-one">
+                    <div class="col-md-4 product-left p-left">
+                        <p><a class="btn btn-success" href="member.jsp">Manage Members</a></p>
+                    </div>
+                    <div class="col-md-4 product-left p-left">
+                        <p><a class="btn btn-success" href="updata.jsp">Add database</a></p>
+                    </div>
+                    <div class="col-md-4 product-left p-left">
+                        <p><a class="btn btn-success" href="downdata.jsp">Delete database</a></p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="col-md-3 product-left p-left">
+                <label>Number of Element</label>
+                <hr>
+                <div class="w_sidebar" style="border: none">
+                    <p><strong>Sum of Member(s):</strong> <%=accounts.size() - 1%> people</p>
+
+                    <p><strong>Sum of Category(s):</strong> <%=categoryList.size()%> category(s)</p>
+
+                    <p><strong>Sum of Product(s):</strong> <%=products.size()%> product(s)</p>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<%

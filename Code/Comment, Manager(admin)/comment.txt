@@ -1,0 +1,38 @@
+
+                <div class="col-md-9 contact-right" style="margin-top: 3.5em; width: 825px">
+                    <%
+                        if (name == null){
+
+                    %>
+                    <form action="/CommentServlet?iditem=<%=product.getIditem()%>" autocomplete="on" method="post">
+                        <input class="form-control" placeholder="Login to comment!!" type="text" id="name" name="name" disabled="">
+                        <input class="form-control" placeholder="Login to comment!!" type="text" id="phone" name="phone" disabled="">
+                        <input class="form-control" placeholder="Login to comment!!" type="text" id="email" name="email"  disabled="">
+                        <textarea class="form-control" placeholder="Login to comment!!" required="required" id="comment" name="comment" disabled=""></textarea>
+
+                        <div class="submit-btn">
+                            <input class="btn btn-success" type="submit" value="SUBMIT" disabled="">
+                        </div>
+                    </form>
+                    <%
+                        }else{
+
+                    %>
+                    <form action="/CommentServlet?iditem=<%=product.getIditem()%>" autocomplete="on" method="post">
+                        <input class="form-control" type="text" id="name" name="name" value="<%=AccountDao.getName(name).getUsername()%>" readonly="">
+                        <input class="form-control" type="text" id="phone" name="phone" value="<%=AccountDao.getName(name).getPhone()%>" readonly="">
+                        <input class="form-control" type="text" id="email" name="email" value="<%=AccountDao.getName(name).getEmail()%>" readonly="">
+                        <textarea class="form-control" placeholder="Message" required="required" id="comment" name="comment"></textarea>
+
+                        <div class="submit-btn">
+                            <input class="btn btn-success" type="submit" value="SUBMIT">
+                        </div>
+                    </form>
+                    <%
+                        }
+                    %>
+                </div>
+
+ <c:forEach var="i" items="<%=comments%>">
+                                <li class="subitem1"><a href="#"><strong>${i.username} - ${i.email} - ${i.phone} - ${i.date}:</strong> ${i.comment}</a></li>
+                                </c:forEach>

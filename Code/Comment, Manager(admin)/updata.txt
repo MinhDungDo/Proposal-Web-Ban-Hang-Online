@@ -1,0 +1,226 @@
+﻿<div class="prdt">
+    <div class="container">
+        <div class="prdt-top">
+
+            <h4>Add Category</h4>
+            <%
+                if (httpSession.getAttribute("addcatFail") != null) {
+                    out.println("<div class='alert alert-danger' role='alert' style='width: 485px;'>");
+                    out.println("<strong>Oh snap!</strong> Cannot add category.");
+                    out.println("</div>");
+                    httpSession.removeAttribute("addcatFail");
+                }
+                if (httpSession.getAttribute("addcatSuccess") != null) {
+                    out.println("<div class='alert alert-success' role='alert' style='width: 485px;'>");
+                    out.println("<strong>Well done!</strong> Add category successfully.");
+                    out.println("</div>");
+                    httpSession.removeAttribute("addcatSuccess");
+                }
+            %>
+            <div class="col-md-9 prdt-left">
+                <%
+                    ProductDao productDao = new ProductDao();
+
+                    List<Category> categoryList = new ArrayList<>();
+                    List<Product> products = new ArrayList<>();
+
+                    categoryList = categoryDao.getAll();
+                    products = productDao.getAll();
+                %>
+                <div class="product-one">
+                    <form action="/AddCatServlet" method="post">
+                        <div class="col-md-4 product-left p-left">
+                            <label>SKU</label>
+                            <input class="form-control" type="text" name="sku" id="sku" value="" size="22"
+                                   required="required" pattern="[a-zA-Z0-9]+">
+                            <hr>
+                        </div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>Manufactor</label>
+                            <input class="form-control" type="text" name="manufactor" id="manufactor" value="" size="22"
+                                   required="required" pattern="[a-zA-Z]+">
+                            <hr>
+                        </div>
+                        <div class="clearfix"></div>
+                        <br>
+
+                        <div class="col-md-4 product-left p-left">
+                            <input class="btn btn-success" name="addcat" type="submit" value="Add">
+                        </div>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-3 product-left p-left">
+                <label>Number of Category(s)</label>
+                <hr>
+                <div class="w_sidebar" style="border: none">
+                    <p><strong>Sum of Category(s):</strong> <%=categoryList.size()%> people</p>
+                    <c:forEach var="i" items="<%=categoryList%>">
+                        <p onclick="window.location.href = 'gallery.jsp?page=1&type=getcate&namepage=${i.namecat}'">${i.namecat}
+                            (${i.idcat})</p>
+                    </c:forEach>
+
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <hr>
+        <div class="prdt-top">
+            <h4>Add Product</h4>
+            <%
+                if (httpSession.getAttribute("addproFail") != null) {
+                    out.println("<div class='alert alert-danger' role='alert' style='width: 485px;'>");
+                    out.println("<strong>Oh snap!</strong> Cannot add category.");
+                    out.println("</div>");
+                    httpSession.removeAttribute("addproFail");
+                }
+                if (httpSession.getAttribute("addproSuccess") != null) {
+                    out.println("<div class='alert alert-success' role='alert' style='width: 485px;'>");
+                    out.println("<strong>Well done!</strong> Add category successfully.");
+                    out.println("</div>");
+                    httpSession.removeAttribute("addproSuccess");
+                }
+            %>
+            <div class="col-md-9 prdt-left">
+                <div class="product-one">
+                    <form action="/AddProServlet" method="post">
+                        <div class="col-md-4 product-left p-left">
+                            <label>Name</label>
+                            <input class="form-control" type="text" name="name" id="name" value="" size="22"
+                                   required="required" pattern="[a-zA-Z0-9]+">
+                            <hr>
+                        </div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>Model number</label>
+                            <input class="form-control" type="text" name="model" id="model" value="" size="22"
+                                   required="required" pattern="[0-9]+">
+                            <hr>
+                        </div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>SKU</label>
+                            <input class="form-control" type="text" name="sku" id="sku" value="" size="22"
+                                   required="required" pattern="[a-zA-Z]+">
+                            <hr>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>Price</label>
+                            <input class="form-control" type="text" name="price" id="price" value="" size="22"
+                                   required="required" pattern="[a-zA-Z0-9]+">
+                            <hr>
+                        </div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>Quantity</label>
+                            <input class="form-control" type="text" name="quantity" id="quantity" value="" size="22"
+                                   required="required" pattern="[0-9]+">
+                            <hr>
+                        </div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>URL</label>
+                            <input class="form-control" type="text" name="url" id="url" value="" size="22"
+                                   required="required" pattern="[a-zA-Z]+">
+                            <hr>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>URL2</label>
+                            <input class="form-control" type="text" name="url2" id="url2" value="" size="22"
+                                   required="required" pattern="[a-zA-Z0-9]+">
+                            <hr>
+                        </div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>URL3</label>
+                            <input class="form-control" type="text" name="url3" id="url3" value="" size="22"
+                                   required="required" pattern="[a-zA-Z]+">
+                            <hr>
+                        </div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>Information</label>
+                            <input class="form-control" type="text" name="info" id="info" value="" size="22"
+                                   required="required" pattern="[a-zA-Z]+">
+                            <hr>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>Movement</label>
+                            <input class="form-control" type="text" name="movement" id="movement" value="" size="22"
+                                   required="required" pattern="[a-zA-Z0-9]+">
+                            <hr>
+                        </div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>Water</label>
+                            <input class="form-control" type="text" name="water" id="water" value="" size="22"
+                                   required="required" pattern="[a-zA-Z]+">
+                            <hr>
+                        </div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>Case</label>
+                            <input class="form-control" type="text" name="case" id="case" value="" size="22"
+                                   required="required" pattern="[a-zA-Z]+">
+                            <hr>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>Strap</label>
+                            <input class="form-control" type="text" name="strap" id="strap" value="" size="22"
+                                   required="required" pattern="[a-zA-Z0-9]+">
+                            <hr>
+                        </div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>Material</label>
+                            <input class="form-control" type="text" name="material" id="material" value="" size="22"
+                                   required="required" pattern="[a-zA-Z]+">
+                            <hr>
+                        </div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>Type</label>
+                            <input class="form-control" type="text" name="type" id="type" value="" size="22"
+                                   required="required" pattern="[a-zA-Z]+">
+                            <hr>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>Gender</label>
+                            <input class="form-control" type="text" name="gender" id="gender" value="" size="22"
+                                   required="required" pattern="[a-zA-Z0-9]+">
+                            <hr>
+                        </div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>Warranty</label>
+                            <input class="form-control" type="text" name="warranty" id="warranty" value="" size="22"
+                                   required="required" pattern="[a-zA-Z]+">
+                            <hr>
+                        </div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>Country</label>
+                            <input class="form-control" type="text" name="country" id="country" value="" size="22"
+                                   required="required" pattern="[a-zA-Z]+">
+                            <hr>
+                        </div>
+                        <div class="clearfix"></div>
+                        <br>
+
+                        <div class="col-md-4 product-left p-left">
+                            <input class="btn btn-success" name="addpro" type="submit" value="Add">
+                        </div>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-3 product-left p-left">
+                <label>Number of Product(s)</label>
+                <hr>
+                <div class="w_sidebar" style="border: none">
+                    <p><strong>Sum of Product(s):</strong> <%=products.size()%> people</p>
+                    <c:forEach var="i" items="<%=products%>">
+                        <p onclick="window.location.href = 'single.jsp?iditem=${i.iditem}'">${i.nameitem}
+                            (${i.idcat})</p>
+                    </c:forEach>
+
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,300 @@
+﻿<div class="prdt">
+    <%
+
+        List<Category> categoryList = new ArrayList<>();
+        List<Product> products = new ArrayList<>();
+
+        categoryList = categoryDao.getAll();
+        products = productDao.getAll();
+        if (iditem == null) {
+    %>
+    <div class="container">
+        <div class="prdt-top">
+            <h4>Delete Category</h4>
+
+            <div class="col-md-9 prdt-left">
+                <div class="product-one">
+                    <div class="col-md-4 product-left p-left">
+                        <label>SKU</label>
+                    </div>
+                    <div class="col-md-4 product-left p-left">
+                        <label>Manufactor</label>
+                    </div>
+                    <div class="col-md-4 product-left p-left">
+                        <label>Action</label>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                    <c:forEach var="i" items="<%=categoryList%>" begin="0">
+                        <form action="/UpdateCatServlet" method="post">
+                            <div class="col-md-4 product-left p-left">
+                                <input class="form-control" type="text" name="idcat" id="idcat" value="${i.idcat}"
+                                       size="22"
+                                       readonly="">
+                            </div>
+                            <div class="col-md-4 product-left p-left">
+                                <input class="form-control" type="text" name="namecat" id="namecat" value="${i.namecat}"
+                                       size="22"
+                                       disabled="">
+                            </div>
+                            <div class="col-md-4 product-left p-left">
+                                <c:if test="${i.status == 0}">
+                                    <input class="btn btn-success" name='active' type='submit' value='Active'
+                                           STYLE="color: red">
+                                    <input class="btn btn-success" name='delete' type='submit' value='Delete'
+                                           onclick="return confirm('Are u sure?')">
+                                </c:if>
+                                <c:if test="${i.status == 1}">
+                                    <input class="btn btn-success" name='inactive' type='submit' value='Inactive'>
+                                    <input class="btn btn-success" name='delete' type='submit' value='Delete'
+                                           onclick="return confirm('Are u sure?')">
+                                </c:if>
+                            </div>
+                            <div class="clearfix"></div>
+                            <br>
+                        </form>
+                    </c:forEach>
+                </div>
+            </div>
+            <div class="col-md-3 product-left p-left">
+                <label>Number of Category(s)</label>
+                <hr>
+                <div class="w_sidebar" style="border: none">
+                    <p><strong>Sum of Category(s):</strong> <%=categoryList.size()%> items</p>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <hr>
+        <div class="prdt-top">
+            <h4>Delete Product</h4>
+
+            <div class="col-md-9 prdt-left">
+                <div class="product-one">
+                    <div class="col-md-4 product-left p-left">
+                        <label>Name</label>
+                    </div>
+                    <div class="col-md-4 product-left p-left">
+                        <label>Uploaded Date</label>
+                    </div>
+                    <div class="col-md-4 product-left p-left">
+                        <label>Action</label>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                    <c:forEach var="i" items="<%=products%>" begin="0">
+                        <form action="/UpdateProServlet" method="post">
+                            <input hidden="" id="idpro" name="idpro" value="${i.iditem}">
+
+                            <div class="col-md-4 product-left p-left">
+                                <input class="form-control" type="text" name="namepro" id="namepro"
+                                       value="${i.nameitem}"
+                                       size="22"
+                                       onClick="window.location.href='downdata.jsp?iditem=${i.iditem}'"
+                                       readonly="readonly">
+                            </div>
+                            <div class="col-md-4 product-left p-left">
+                                <input class="form-control" type="text" name="date" id="date" value="${i.date}"
+                                       size="22"
+                                       disabled="">
+                            </div>
+                            <div class="col-md-4 product-left p-left">
+                                <c:if test="${i.status == 0}">
+                                    <input class="btn btn-success" name='active' type='submit' value='Active'
+                                           STYLE="color: red">
+                                    <input class="btn btn-success" name='delete' type='submit' value='Delete'
+                                           onclick="return confirm('Are u sure?')">
+                                </c:if>
+                                <c:if test="${i.status == 1}">
+                                    <input class="btn btn-success" name='inactive' type='submit' value='Inactive'>
+                                    <input class="btn btn-success" name='delete' type='submit' value='Delete'
+                                           onclick="return confirm('Are u sure?')">
+                                </c:if>
+                            </div>
+                            <div class="clearfix"></div>
+                            <br>
+                        </form>
+                    </c:forEach>
+                </div>
+            </div>
+            <div class="col-md-3 product-left p-left">
+                <label>Number of Product(s)</label>
+                <hr>
+                <div class="w_sidebar" style="border: none">
+                    <p><strong>Sum of Product(s):</strong> <%=products.size()%> items</p>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <%
+    } else {
+        Product detailproduct = productDao.getByID(Integer.parseInt(iditem));
+    %>
+    <div class="container">
+        <center>
+            <%
+                if (httpSession.getAttribute("updateFail") != null) {
+                    out.println("<div class='alert alert-danger' role='alert' style='width: 485px;'>");
+                    out.println("<strong>Oh snap!</strong> Your password is not true.");
+                    out.println("</div>");
+                    httpSession.removeAttribute("updateFail");
+                } else if (httpSession.getAttribute("updateSuccess") != null) {
+                    out.println("<div class='alert alert-success' role='alert' style='width: 485px;'>");
+                    out.println("<strong>Well done!</strong> Updated successfuly.");
+                    out.println("</div>");
+                    httpSession.removeAttribute("updateSuccess");
+                }
+            %>
+        </center>
+        <div class="prdt-top">
+            <div class="col-md-9 prdt-left">
+                <div class="product-one">
+                    <form action="/UpdateProServlet" method="post">
+                        <div class="col-md-4 product-left p-left">
+                            <label>Name</label>
+                            <input class="form-control" type="text" name="namepro" id="namepro"
+                                   value="<%=detailproduct.getNameitem()%>" size="22">
+                            <hr>
+                        </div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>Model Number</label>
+                            <input type="text" name="idpro" id="idpro"
+                                   value="<%=detailproduct.getIditem()%>" size="22">
+                            <hr>
+                        </div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>SKU</label>
+                            <input class="form-control" type="text" name="sku" id="sku"
+                                   value="<%=detailproduct.getIdcat()%>" size="22">
+                            <hr>
+                        </div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>Price</label>
+                            <input class="form-control" type="text" name="price" id="price"
+                                   value="<%=detailproduct.getPrice()%>" size="22">
+                            <hr>
+                        </div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>Quantity</label>
+                            <input class="form-control" type="text" name="quan" id="quan"
+                                   value="<%=detailproduct.getQuantity()%>" size="22">
+                            <hr>
+                        </div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>Country</label>
+                            <input class="form-control" type="text" name="country" id="country"
+                                   value="<%=detailproduct.getCountry()%>" size="22">
+                            <hr>
+                        </div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>Info</label>
+                            <input class="form-control" type="text" name="info" id="info"
+                                   value="<%=detailproduct.getInfo()%>" size="22">
+                            <hr>
+                        </div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>Water</label>
+                            <input class="form-control" type="text" name="water" id="water"
+                                   value="<%=detailproduct.getWater()%>" size="22">
+                            <hr>
+                        </div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>Case</label>
+                            <input class="form-control" type="text" name="case" id="case"
+                                   value="<%=detailproduct.get_case()%>" size="22">
+                            <hr>
+                        </div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>Strap</label>
+                            <input class="form-control" type="text" name="strap" id="strap"
+                                   value="<%=detailproduct.getStrap()%>" size="22">
+                            <hr>
+                        </div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>Material</label>
+                            <input class="form-control" type="text" name="material" id="material"
+                                   value="<%=detailproduct.getMaterial()%>" size="22">
+                            <hr>
+                        </div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>Type</label>
+                            <input class="form-control" type="text" name="type" id="type"
+                                   value="<%=detailproduct.getType()%>" size="22">
+                            <hr>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>Gender</label>
+                            <input class="form-control" type="text" name="gender" id="gender"
+                                   value="<%=detailproduct.getGender()%>" size="22">
+                            <hr>
+                        </div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>Wanrranty</label>
+                            <input class="form-control" type="text" name="warr" id="warr"
+                                   value="<%=detailproduct.getWarranty()%>" size="22">
+                            <hr>
+                        </div>
+                        <div class="col-md-4 product-left p-left">
+                            <label>Movement</label>
+                            <input class="form-control" type="text" name="move" id="move"
+                                   value="<%=detailproduct.getMovement()%>" size="22">
+                            <hr>
+                        </div>
+                        <div class="clearfix"></div>
+                        <br>
+                        <div class="col-md-4 product-left p-left">
+                            <c:if test="<%=detailproduct.getStatus().equals(0)%>">
+                                <input class="btn btn-success" name='activein' type='submit' value='Active'
+                                       STYLE="color: red">
+                                <input class="btn btn-success" name='delete' type='submit' value='Delete'
+                                       onclick="return confirm('Are u sure?')">
+
+                                <input class="btn btn-success" name='update' type='submit' value='Update'>
+                            </c:if>
+                            <c:if test="<%=detailproduct.getStatus().equals(1)%>">
+                                <input class="btn btn-success" name='inactivein' type='submit' value='Inactive'>
+                                <input class="btn btn-success" name='delete' type='submit' value='Delete'
+                                       onclick="return confirm('Are u sure?')">
+
+                                <input class="btn btn-success" name='update' type='submit' value='Update'>
+                            </c:if>
+                        </div>
+                        <div class="clearfix"></div>
+
+                </div>
+            </div>
+            <div class="col-md-3 product-left p-left">
+                <div class="w_sidebar" style="border: none">
+                    <label>Uploaded Date</label>
+                    <input class="form-control" type="text" name="date" id="date"
+                           value="<%=detailproduct.getDate()%>" size="22">
+                    <hr>
+                    <label>URL</label>
+                    <input class="form-control" type="text" name="url" id="url"
+                           value="<%=detailproduct.getUrl()%>"
+                           size="22">
+                    <hr>
+                    <label>URL2</label>
+                    <input class="form-control" type="text" name="url2" id="url2"
+                           value="<%=detailproduct.getUrl2()%>" size="22">
+                    <hr>
+                    <label>URL3</label>
+                    <input class="form-control" type="text" name="url3" id="url3"
+                           value="<%=detailproduct.getUrl3()%>"
+                           size="22">
+                    <hr>
+                    <label>Confirm Password</label>
+                    <input class="form-control" type="text" name="conf" id="conf" size="22">
+                    <hr>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            </form>
+        </div>
+    </div>
+    <%
+        }
+    %>
+</div>
