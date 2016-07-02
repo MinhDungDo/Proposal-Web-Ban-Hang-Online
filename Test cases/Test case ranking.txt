@@ -1,0 +1,8 @@
+Test case priority
+
+Priority 1: Test cases that must be fixed.  
+
+Priority 2: Test cases should be fixed if time permits
+
+Priority 3: Test cases that can wait and fixed after final delivery.
+ 
