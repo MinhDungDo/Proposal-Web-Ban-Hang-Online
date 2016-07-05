@@ -1,0 +1,48 @@
+<script src="../js/simpleCart.js"></script>
+<div class="ckeckout">
+    <div class="container">
+        <div class="ckeck-top heading">
+            <h2>CHECKOUT</h2>
+        </div>
+        <div class="ckeckout-top">
+            <div class="cart-items">
+                <h3>My Shopping Bag (<span class="simpleCart_quantity">0</span>)</h3>
+
+                <div class="in-check">
+                    <div class="simpleCart_items"></div>
+                    <table>
+                        <tbody>
+                        <tr>
+                            <th style="width: 835px"><h5 style="text-align: right"><strong>Subtotal</strong></h5></th>
+                            <th style="width: 265px"><h5 style="text-align: right"><span
+                                    class="simpleCart_total">$ 0.00</span></h5></th>
+                        </tr>
+                        <tr>
+                            <th><h5 style="text-align: right"><strong>VAT (10%)</strong></h5></th>
+                            <th><h5 style="text-align: right"><span class="simpleCart_tax">$ 0.00</span></h5></th>
+                        </tr>
+                        <tr>
+                            <th><h5 style="text-align: right"><strong>Total</strong></h5></th>
+                            <th><h5 style="text-align: right"><span class="simpleCart_grandTotal">$ 0.00</span></h5>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <button type="button" class="btn btn-default" style="float: right"
+                                        onclick="window.history.back()">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                                </button>
+                            </th>
+                            <th>
+                                <button type="button" class="btn btn-success simpleCart_checkout" style="float: right">
+                                    Checkout <span class="glyphicon glyphicon-play"></span>
+                                </button>
+                            </th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
