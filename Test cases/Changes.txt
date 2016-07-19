@@ -1,0 +1,167 @@
+Fixed expected result:
+
+03 - 035 Sign in with password which has number only
+03 - 036 Sign in with password which has alphabets only
+05 - 013 Modify url with invalid page number
+05 - 014 Modify url with invalid category and page number
+06 - 012 Modify url with out of stock item ID
+08 - 004 Add new category which has unavailable Manufactor
+08 - 005 Add new category which has unavailable Manufactor with different lower and upper case
+08 - 008 Add new category which has blank space in manufactor name
+08 - 009 Add new category which has blank space before manufactor name
+08 - 010 Add new category which has blank space after manufactor name
+08 - 011 Add new category which has blank space after SKU
+08 - 013 Add new category which has blank space before SKU
+08 - 053 Add product which has unavailable name
+08 - 054 Add product with unvailable name that includes different lowercase and uppercase letters
+08 - 055 Add product with name that has blanks between letters
+08 - 057 Add product with name that includes special characters
+08 - 060 Add product with name that includes special characters, numbers and alphabets
+08 - 061 Add product with name that includes numbers and special characters
+08 - 062 Add product with name that includes alphabets and special characters
+08 - 072 Add product with nonexistent category
+08 - 099 Add product with URL that includes blank space between letters
+08 - 100 Add product with online image URL 
+08 - 101 Add product with real URL 
+08 - 102 Add product with URL that includes numbers
+08 - 103 Add product with URL that includes special characters
+08 - 104 Add product with URL that includes alphabets
+08 - 105 Add product with URL that includes numbers and alphabets
+08 - 106 Add product with URL that includes special characters, numbers and alphabets
+08 - 107 Add product with URL that includes numbers and special characters
+08 - 108 Add product with URL that includes alphabets and special characters
+08 - 109 Add product with information that has blank space between letters
+08 - 110 Add product with information that includes numbers
+08 - 111 Add product with information that includes special characters
+08 - 113 Add product with information that includes numbers and alphabets
+08 - 114 Add product with information that includes special characters, numbers and alphabets
+08 - 115 Add product with information that includes numbers and special characters
+08 - 116 Add product with information that includes alphabets and special characters
+08 - 117 Add product with movement that includes numbers
+08 - 118 Add product with movement that includes special characters
+08 - 119 Add product with movement that has blank space between letters
+08 - 121 Add product with movement that includes numbers and alphabets
+08 - 124 Add product with movement that includes alphabets and special characters
+08 - 125 Add product with water that has blank space between letters
+08 - 126 Add product with water that includes numbers
+08 - 127 Add product with water that includes special characters
+08 - 129 Add product with water that includes numbers and alphabets
+08 - 130 Add product with water that includes special characters, numbers and alphabets
+08 - 131 Add product with water that includes numbers and special characters
+08 - 132 Add product with water that includes alphabets and special characters
+08 - 133 Add product with case that has blank space between letters
+08 - 134 Add product with case that includes numbers
+08 - 135 Add product with case that includes special characters
+08 - 137 Add product with case that includes numbers and alphabets
+08 - 138 Add product with case that includes special characters, numbers and alphabets
+08 - 139 Add product with case that includes numbers and special characters
+08 - 140 Add product with case that includes alphabets and special characters
+08 - 141 Add product with strap that has blanks between letters
+08 - 143 Add product with strap that includes special characters
+08 - 146	Add product with strap that includes special characters, numbers and alphabets
+08 - 147 Add product with strap that includes numbers and special characters
+08 - 148 Add product with strap that includes alphabets and special characters
+08 - 149 Add product with material that has blank space between letters
+08 - 151 Add product with material that includes special characters
+08 - 156 Add product with material that includes alphabets and special characters
+08 - 157 Add product with type that has blank space between words
+08 - 159 Add product with type that includes special characters
+08 - 164 Add product with type that includes alphabets and special characters
+08 - 165 Add product with warranty that has blank space between letters
+08 - 166 Add product with  warranty that includes numbers
+08 - 167 Add product with warranty that includes special characters
+08 - 169 Add product with  warranty that includes numbers and alphabets
+08 - 170 Add product with  warranty that includes special characters, numbers and alphabets
+08 - 171 Add product with  warranty that includes numbers and special characters
+08 - 172 Add product with warranty that includes alphabets and special characters
+08 - 173 Add product with country that has blank space between letters
+08 - 184 Add product with gender that includes numbers
+08 - 186 Add product with  gender that includes alphabets and is different from Female or Male
+08 - 187 Add product with  gender that includes numbers and alphabets
+09 - 005 Disable category completely
+09 - 006 Disable products of inactive category
+010 - 005 Update product with all empty fields
+010 - 006 Update product with empty name  field  
+010 - 007 Update product with empty model number field
+010 - 008 Update product with empty SKU
+010 - 009 Update product with empty uploaded date field
+010 - 010 Update product with empty quantity field
+010 - 011 Update product with empty price field
+010 - 012 Update product with empty country field
+010 - 013 Update product with empty URL field
+010 - 014 Update product with empty URL2 field
+010 - 015 Update product with empty URL3 field
+010 - 016 Update product with empty info field
+010 - 017 Update product with empty case field
+010 - 018 Update product with empty water field
+010 - 019 Update product with empty strap field
+010 - 020 Update product with empty material field
+010 - 021 Update product with empty type field
+010 - 022 Update product with empty gender field
+010 - 023 Update product with empty warranty field
+010 - 024 Update product with empty movement field
+010 - 025 Update product with all blank fields
+010 - 026 Update product with blank name  field  
+010 - 027 Update product with blank model number field
+010 - 029 Update product with blank uploaded date field
+010 - 030 Update product with blank quantity field
+010 - 031 Update product with blank price field
+010 - 032 Update product with blank country field
+010 - 033 Update product with blank URL field
+010 - 034 Update product with blank URL2 field
+010 - 035 Update product with blank URL3 field
+010 - 036 Update product with blank info field
+010 - 037 Update product with blank case field
+010 - 038 Update product with blank water field
+010 - 039 Update product with blank strap field
+010 - 040 Update product with blank material field
+010 - 041 Update product with blank type field
+010 - 043 Update product with blank warranty field
+010 - 044 Update product with blank movement field
+010 - 045 Update product with existed name
+010 - 046 Update product with name that has blank space between words
+010 - 047 Update product with existed name that includes different lowercase and uppercase letters
+010 - 048 Update product with name that includes alphabets
+010 - 049 Update product with name that includes numbers
+010 - 050 Update product with name that includes special characters
+010 - 051 Update product with name that includes alphabets and numbers
+010 - 052 Update product with name that includes alphabets and special characters
+010 - 053 Update product with name that includes numbers and special characters
+010 - 054 Update product with name that includes alphabets, numbers and special characters 
+010 - 055 Update product with existed model number
+010 - 056 Update product with model number that has blank space between words
+010 - 057 Update product with model number that includes alphabets
+010 - 058 Update product with model number that includes numbers
+010 - 059 Update product with model number that includes numbers and starts with zero
+010 - 060 Update product with model number that includes special characters
+010 - 061 Update product with model number that includes alphabets and numbers
+010 - 062 Update product with model number that includes alphabets and special characters
+010 - 063 Update product with model number that includes numbers and special characters
+010 - 064 Update product with model number that includes alphabets, numbers and special characters 
+010 - 065 Update product with non-existent SKU
+010 - 067 Update product with existed SKU that includes different lowercase and uppercase letters
+010 - 084 Update product with quantity that has blank space between words
+010 - 085 Update product with quantity that includes alphabets
+010 - 087 Update product with quantity that includes special characters
+010 - 088 Update product with quantity that includes alphabets and numbers
+010 - 089 Update product with quantity that includes alphabets and special characters
+010 - 090 Update product with quantity that includes numbers and special characters
+010 - 091 Update product with quantity that includes alphabets, numbers and special characters 
+010 - 092 Update product with price that includes negative number
+010 - 169 Update product with country that includes numbers
+010 - 170 Update product with country that includes special characters
+010 - 171 Update product with country that includes alphabets and numbers
+010 - 172 Update product with country that includes alphabets and special characters
+010 - 173 Update product with country that includes numbers and special characters
+010 - 174 Update product with country that includes alphabets, numbers and special characters 
+010 - 185 Modify URL with invaild item id
+010 - 186 Modify URL with empty item id
+010 - 187 Modify URL with different additional parts
+
+Deleted test cases
+07 - 018 Inspect element to modify email
+07 - 019 Inspect element to modify name
+07 - 020 Inspect element to modify phone number
+07 - 021 Inspect element to change form method to "get"
+
+
